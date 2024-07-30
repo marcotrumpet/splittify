@@ -39,8 +39,8 @@ class UserSearchDelegate extends SearchDelegate<List<UserModel>> {
   @override
   Widget buildResults(BuildContext context) {
     final productsSearcher = HitsSearcher(
-      applicationID: 'L52SONBEWP',
-      apiKey: '8a8bdc393f20e051f37af065299ebbea',
+      applicationID: const String.fromEnvironment('applicationID'),
+      apiKey: const String.fromEnvironment('apiKey'),
       indexName: 'users_index',
     );
 
