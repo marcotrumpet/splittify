@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/found_raise/documents {
+    match /collezione/{documentId} {
+      allow create: if request.resource.data.keys().hasAll(['recipientName', 'goal', 'fee', 'attendees']) 
+                      && request.resource.data.fee > 0 
+                      && request.resource.data.attendees.every(attendee => attendee.keys().hasAll(['name', 'email']));
+      allow update: if request.resource.data.keys().hasAll(['recipientName', 'goal', 'fee', 'attendees']) 
+                      && request.resource.data.fee > 0 
+                      && request.resource.data.attendees.every(attendee => attendee.keys().hasAll(['name', 'email']));
+    }
+  }
+}
